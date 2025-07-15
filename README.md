@@ -1,42 +1,65 @@
 # Brain Age Prediction Using 3D CNN
 
-This project predicts brain age from MRI scans using 3D Convolutional Neural Networks (CNN).
+This project aims to predict brain age from MRI scans using advanced 3D Convolutional Neural Networks (CNNs). It provides a complete pipeline from data preprocessing and model training to user-friendly prediction and visualization tools.
 
 ## Features
 
-* Train a 3D CNN model on single-modality MRI data.
-* Supports multi-modal fusion of two MRI types (VBM and Quasiraw) by averaging predictions.
-* Uses data generators to load MRI data batch-wise without resizing.
-* Outputs training curves and prediction scatter plots.
-* Saves the trained model.
-* UI Interface.
+- **3D CNN Model**: Train and evaluate a deep learning model for brain age prediction using 3D MRI data.
+- **Multi-Modal Fusion**: Support for combining different MRI modalities (e.g., VBM and Quasiraw) to improve prediction accuracy.
+- **Data Quality Control**: Tools for MRI data quality checking and suspect sample management.
+- **Batch Data Generator**: Efficiently loads large MRI datasets without resizing, supporting scalable training.
+- **User Interface**: Intuitive GUI for loading models, selecting MRI files, visualizing slices, and predicting brain age.
+- **Visualization**: Training curves, scatter plots of predictions, and MRI slice viewers.
+- **Early Stopping**: Prevents overfitting during training.
 
-## Requirements
+## Installation
 
-* Python 3.9
-* TensorFlow
-* NumPy
-* Pandas
-* Scikit-image
-* Matplotlib
-* Scikit-learn
+### Requirements
 
-## How to Run
+- Python 3.9
+- TensorFlow
+- NumPy
+- Pandas
+- Scikit-image
+- Matplotlib
+- Scikit-learn
 
-1. Prepare your MRI `.npy` data and index CSV files (`my_index.csv` for single modality, `my_index_vbm_quasiraw.csv` for multi-modal fusion).
-2. Run single modality training:
-
+Install dependencies with:
 ```bash
-python train_brain_age.py
+pip install -r requirements.txt
 ```
 
-3. Run multi-modal fusion training and testing:
+## Usage
 
+### 1. Data Preparation
+
+- Prepare your MRI data as `.npy` files (3D NumPy arrays).
+- Create an index CSV file (e.g., `my_index.csv`) with columns for file paths and ages.
+
+### 2. Model Training
+
+Train a single-modality model:
 ```bash
-python decision_level_fusion_generator.py
+python train/train_brain_age.py
 ```
 
-## Data Format
+For multi-modal fusion (if supported):
+```bash
+python train/train_brain_age_multimodal.py
+```
 
-* MRI files: 3D numpy arrays (`.npy`).
-* Index CSV: contains file paths and ages.
+### 3. Model Evaluation
+
+Evaluate the trained model:
+```bash
+python test/eval_model.py
+```
+
+### 4. Prediction and Visualization
+
+Launch the GUI for brain age prediction:
+```bash
+python predict/predict_brain_age.py
+```
+- Load a trained model and MRI file.
+- View MRI slices and predict brain age with a single click.
